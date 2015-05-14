@@ -24,23 +24,19 @@ class qunar_subcontract(models.Model):
 
 	@api.multi
 	def action_assign(self):
-		stock_picking_obj = self.env['stock.picking']
+		stock_move_obj = self.env['stock.move']
 		# in subcontract case
 		if self.routing_id and self.routing_id.location_id and self.routing_id.location_id.usage =="supplier":
-			pickings = stock_picking_obj.search([('origin','=',self.name)])
-			if not len(pickings):
-				raise except_orm(_('Warning'),_("you dont have a picking order in subcontract order."))
+			#[Bug] if there already has one out order which state is not done, the new out marterial will append to it
+			#In this case, how to find it out?
+			moves = stock_move_obj.search([('origin','=',self.name),('location_dest_id.usage','=','supplier'),('state','!=','done')])
+			if len(moves):
+				raise except_orm(_('Warning'),_("you haven't finished your material moves in subcontract order."))
 
-			#if there're multi picking orders ref manufacture
-			unfinished_pickings = [p for p in pickings if p.state!='cancel' and p.state !='done']
-			done_pickings = [p for p in pickings if p.state=="done"]
-
-			if len(unfinished_pickings):
-				raise except_orm(_('Warning'),_("you have unfinished subcontracting picking!"))
-
-			#[FIXME] What if there're several done picking orders
-			if not len(done_pickings):
-				raise except_orm(_('Warning'),_("you dont have one done subcontracting picking!"))
+			#double check if there's no moves!
+			done_moves = stock_move_obj.search([('origin','=',self.name),('location_dest_id.usage','=','supplier'),('state','=','done')])
+			if not len(done_moves):
+				raise except_orm(_('Warning'),_("Where's your material moves?!"))
 
 		return super(qunar_subcontract,self).action_assign()
 
@@ -121,8 +117,8 @@ class stock_move(models.Model):
 		return super(stock_move,self).get_price_unit(move)
 
 
-	@api.multi
+	"""@api.multi
 	def action_done(self):
 		#reverse the tuple ids of self
 		self._ids =tuple(sorted(self._ids,reverse=True))
-		return super(stock_move,self).action_done()
+		return super(stock_move,self).action_done()"""

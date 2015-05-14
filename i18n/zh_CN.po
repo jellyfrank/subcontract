@@ -1,0 +1,64 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* qunar_subcontract
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-05-14 09:54+0000\n"
+"PO-Revision-Date: 2015-05-14 17:58+0800\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: zh\n"
+"X-Generator: Poedit 1.7.6\n"
+
+#. module: qunar_subcontract
+#: code:addons/qunar_subcontract/qunar_subcontract.py:54
+#, python-format
+msgid "Error!"
+msgstr "错误！"
+
+#. module: qunar_subcontract
+#: code:addons/qunar_subcontract/qunar_subcontract.py:54
+#, python-format
+msgid "Make sure you have at least an incoming picking type defined"
+msgstr "请确保您至少定义了一个入库类型的分拣"
+
+#. module: qunar_subcontract
+#: model:ir.model,name:qunar_subcontract.model_mrp_production
+msgid "Manufacturing Order"
+msgstr "生产单"
+
+#. module: qunar_subcontract
+#: model:ir.model,name:qunar_subcontract.model_procurement_order
+msgid "Procurement"
+msgstr "需求"
+
+#. module: qunar_subcontract
+#: model:ir.model,name:qunar_subcontract.model_stock_move
+msgid "Stock Move"
+msgstr "库存调拨"
+
+#. module: qunar_subcontract
+#: code:addons/qunar_subcontract/qunar_subcontract.py:34
+#: code:addons/qunar_subcontract/qunar_subcontract.py:39
+#, python-format
+msgid "Warning"
+msgstr "警告"
+
+#. module: qunar_subcontract
+#: code:addons/qunar_subcontract/qunar_subcontract.py:39
+#, python-format
+msgid "Where's your material moves?!"
+msgstr "你的原料调拨哪里去了？"
+
+#. module: qunar_subcontract
+#: code:addons/qunar_subcontract/qunar_subcontract.py:34
+#, python-format
+msgid "you haven't finished your material moves in subcontract order."
+msgstr "你在此外协单重有尚未完成的原料调拨！"
